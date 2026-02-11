@@ -1,0 +1,710 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "APIs de Pedidos Smarkets",
+    "version": "1.0.0",
+    "title": "Documentação de APIs Smarkets"
+  },
+  "host": "virtserver.swaggerhub.com",
+  "basePath": "/hsintermediacaodecom/API-Smarkets/1.0.0",
+  "schemes": [
+    "https"
+  ],
+  "security": [
+    {
+      "password": [
+        "read",
+        "write"
+      ]
+    }
+  ],
+  "paths": {
+    "/api/pedidos-integracao/{idPedido}": {
+      "get": {
+        "summary": "Permite consultar dados de um pedido através do código do Pedido do Marketplace.",
+        "description": "",
+        "operationId": "",
+        "parameters": [
+          {
+            "name": "idPedido",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "examples": {},
+            "schema": {
+              "$ref": "#/definitions/inline_response_200"
+            }
+          }
+        }
+      }
+    },
+    "/api/pedidos-integracao/": {
+      "put": {
+        "tags": [],
+        "summary": "Permite alterar alguns dados de pedido no Marketplace que não estejam com situação faturado, enviado ou recebido.",
+        "operationId": "put-api-pedidos-integracao",
+        "parameters": [
+          {
+            "x-examples": {
+              "Exemplo de request": {
+                "IdPedido": 22885,
+                "Status": "Aguardando aprovação interna",
+                "Itens": [
+                  {
+                    "IdPedido": 22885,
+                    "IdPedidoItem": 40424,
+                    "Quantidade": 10.5,
+                    "PrecoBruto": 100,
+                    "PrecoLiquido": 90,
+                    "PrecoUnidade": 9
+                  }
+                ]
+              }
+            },
+            "in": "body",
+            "name": "body",
+            "description": "",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/body"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/inline_response_200_1"
+            }
+          }
+        }
+      }
+    },
+    "/api/pedidos-integracao/pendentesintegracao?idTenant={idTenant}": {
+      "get": {
+        "tags": [],
+        "summary": "Permite consultar lista de pedidos na situação pendente de integração e aguardando aprovação interna do Marketplace.",
+        "operationId": "get-api-pedidos-integracao-pendentesintegracao?idTenant=-idTenant",
+        "parameters": [
+          {
+            "name": "idTenant",
+            "in": "path",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/inline_response_200_2"
+            }
+          }
+        }
+      }
+    },
+    "/api/pedidos-integracao/cancelados/finalizados": {
+      "put": {
+        "tags": [],
+        "summary": "Permite cancelar pedidos no Marketplace",
+        "operationId": "put-api-pedidos-integracao-cancelados-finalizados",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/body_1"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/inline_response_200_3"
+            }
+          }
+        }
+      }
+    }
+  },
+  "securityDefinitions": {
+    "password": {
+      "type": "oauth2",
+      "tokenUrl": "",
+      "flow": "password",
+      "scopes": {}
+    }
+  },
+  "definitions": {
+    "inline_response_200_itens": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": "Identificador único do item do pedido"
+        },
+        "codigoProduto": {
+          "type": "string",
+          "description": "Código do produto"
+        },
+        "nomeProduto": {
+          "type": "string",
+          "description": "Nome ou descrição resumida do produto"
+        },
+        "quantidade": {
+          "type": "integer",
+          "description": "Quantidade solicitada do produto"
+        },
+        "precoBruto": {
+          "type": "integer",
+          "description": "Valor bruto do item antes de descontos"
+        },
+        "precoLiquido": {
+          "type": "integer",
+          "description": "Valor líquido do item após aplicação de descontos"
+        },
+        "precoUnidade": {
+          "type": "integer",
+          "description": "Preço unitário do produto"
+        },
+        "codigoCategoria": {
+          "type": "string",
+          "description": "Código da categoria do produto"
+        },
+        "codigoNcm": {
+          "type": "string",
+          "description": "Código NCM do produto"
+        },
+        "codigoRc": {
+          "type": "string",
+          "description": "Código da requisição de compra associada ao item"
+        },
+        "codigoUnidadeMedida": {
+          "type": "string",
+          "description": "Código da unidade de medida do produto"
+        },
+        "idProdutoIntegracao": {
+          "type": "string",
+          "description": "Identificador do produto no sistema de integração"
+        },
+        "centroCustoIntegracao": {
+          "type": "string",
+          "description": "Centro de custo associado ao item"
+        },
+        "descricaoSolicitacaoCompra": {
+          "type": "string",
+          "description": "Descrição informada na solicitação de compra"
+        },
+        "descricaoDetalhadaProduto": {
+          "type": "string",
+          "description": "Descrição detalhada do produto"
+        },
+        "prazoEntrega": {
+          "type": "integer",
+          "description": "Prazo de entrega do item em dias"
+        },
+        "codigoCompradorItemRc": {
+          "type": "string",
+          "description": "Código do comprador associado ao item da requisição"
+        },
+        "tipoContratoCatalogo": {
+          "type": "integer",
+          "description": "Tipo de contrato ou catálogo aplicado ao item"
+        }
+      },
+      "description": "Objeto que representa um item do pedido"
+    },
+    "inline_response_200": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": "Identificador único do pedido"
+        },
+        "dataPedidoDisponivel": {
+          "type": "string",
+          "description": "Data em que o pedido ficou disponível para processamento"
+        },
+        "dataIntegracao": {
+          "type": "string",
+          "description": "Data em que o pedido foi integrado ao sistema"
+        },
+        "codigoCondicaoPagamento": {
+          "type": "string",
+          "description": "Código da condição de pagamento aplicada ao pedido"
+        },
+        "incoterms": {
+          "type": "string",
+          "description": "Incoterms utilizado na negociação do pedido"
+        },
+        "textoCabecalho": {
+          "type": "string",
+          "description": "Texto informativo exibido no cabeçalho do pedido"
+        },
+        "idFornecedorIntegracao": {
+          "type": "string",
+          "description": "Identificador do fornecedor no sistema de integração"
+        },
+        "cnpjFornecedor": {
+          "type": "string",
+          "description": "CNPJ do fornecedor"
+        },
+        "cnpjComprador": {
+          "type": "string",
+          "description": "CNPJ da empresa compradora"
+        },
+        "nomeUsuarioComprador": {
+          "type": "string",
+          "description": "Nome do usuário responsável pela compra"
+        },
+        "itens": {
+          "type": "array",
+          "description": "Lista de itens que compõem o pedido",
+          "items": {
+            "$ref": "#/definitions/inline_response_200_itens"
+          }
+        }
+      },
+      "x-examples": {
+        "Example 1": {
+          "id": 22887,
+          "dataPedidoDisponivel": "2026-02-11T09:48:41",
+          "dataIntegracao": "2026-02-11T09:48:41",
+          "codigoCondicaoPagamento": "30DDL",
+          "incoterms": "Cif",
+          "textoCabecalho": "Pedido Plataforma Smarkets",
+          "idFornecedorIntegracao": "4041",
+          "cnpjFornecedor": "67.994.897/0001-97",
+          "cnpjComprador": "21.003.099/0001-55",
+          "nomeUsuarioComprador": "André Gotler | Smarkets",
+          "itens": [
+            {
+              "id": 40426,
+              "codigoProduto": "900000636",
+              "nomeProduto": "Mouse Wireless WM126 Preto - Dell (129621684)",
+              "quantidade": 1,
+              "precoBruto": 10,
+              "precoLiquido": 10,
+              "precoUnidade": 10,
+              "codigoCategoria": "PERIFÉRICOS ",
+              "codigoNcm": "84716053",
+              "codigoRc": "60810001",
+              "codigoUnidadeMedida": "",
+              "idProdutoIntegracao": "",
+              "centroCustoIntegracao": "",
+              "descricaoSolicitacaoCompra": "",
+              "descricaoDetalhadaProduto": "",
+              "prazoEntrega": 100,
+              "codigoCompradorItemRc": "12345",
+              "tipoContratoCatalogo": 2
+            }
+          ]
+        }
+      }
+    },
+    "apipedidosintegracao_Itens": {
+      "type": "object",
+      "required": [
+        "IdPedidoItem"
+      ],
+      "properties": {
+        "IdPedido": {
+          "type": "integer",
+          "description": "Código do pedido no Marketplace\r\n"
+        },
+        "IdPedidoItem": {
+          "type": "integer",
+          "description": "Código do item no pedido"
+        },
+        "Quantidade": {
+          "type": "number",
+          "description": "Quantidade do item"
+        },
+        "PrecoBruto": {
+          "type": "integer",
+          "description": "Preço bruto do item"
+        },
+        "PrecoLiquido": {
+          "type": "integer",
+          "description": "Preço líquido do item"
+        },
+        "PrecoUnidade": {
+          "type": "integer",
+          "description": "Preço unitário do item"
+        }
+      }
+    },
+    "body": {
+      "type": "object",
+      "required": [
+        "IdPedido",
+        "Status"
+      ],
+      "properties": {
+        "IdPedido": {
+          "type": "integer",
+          "description": "Código do pedido no Marketplace"
+        },
+        "Status": {
+          "type": "string",
+          "description": "Situação atual do pedido no Marketplace"
+        },
+        "Itens": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/apipedidosintegracao_Itens"
+          }
+        }
+      },
+      "x-examples": {
+        "Example 1": {
+          "IdPedido": 22885,
+          "Status": "Aguardando aprovação interna",
+          "Itens": [
+            {
+              "IdPedido": 22885,
+              "IdPedidoItem": 40424,
+              "Quantidade": 10.5,
+              "PrecoBruto": 100,
+              "PrecoLiquido": 90,
+              "PrecoUnidade": 9
+            }
+          ]
+        }
+      }
+    },
+    "inline_response_200_1": {
+      "type": "object",
+      "properties": {
+        "IdPedido": {
+          "type": "string"
+        },
+        "mensagem": {
+          "type": "string"
+        },
+        "statusCode": {
+          "type": "string"
+        }
+      },
+      "x-examples": {
+        "Example 1": {
+          "IdPedido": "22885",
+          "mensagem": "\"Sucesso\"",
+          "statusCode": "200"
+        }
+      }
+    },
+    "inline_response_200_2_itens": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": "Identificador único do item do pedido"
+        },
+        "codigo": {
+          "type": "string",
+          "description": "Código identificador do item"
+        },
+        "codigoProduto": {
+          "type": "string",
+          "description": "Código do produto"
+        },
+        "nomeProduto": {
+          "type": "string",
+          "description": "Nome do produto"
+        },
+        "quantidade": {
+          "type": "integer",
+          "description": "Quantidade solicitada do produto"
+        },
+        "dataRemessa": {
+          "type": "string",
+          "description": "Data prevista para remessa do item"
+        },
+        "precoBruto": {
+          "type": "integer",
+          "description": "Valor bruto do item"
+        },
+        "precoLiquido": {
+          "type": "integer",
+          "description": "Valor líquido do item após descontos"
+        },
+        "precoUnidade": {
+          "type": "integer",
+          "description": "Preço unitário do produto"
+        },
+        "codigoCategoria": {
+          "type": "string",
+          "description": "Código da categoria do produto"
+        },
+        "codigoNcm": {
+          "type": "string",
+          "description": "Código NCM do produto"
+        },
+        "codigoRc": {
+          "type": "string",
+          "description": "Código da requisição de compra"
+        },
+        "codigoIva": {
+          "type": "string",
+          "description": "Código de IVA aplicado ao item"
+        },
+        "codigoUnidadeMedida": {
+          "type": "string",
+          "description": "Código da unidade de medida do produto"
+        },
+        "idProdutoIntegracao": {
+          "type": "string",
+          "description": "Identificador do produto no sistema de integração"
+        },
+        "centroCustoIntegracao": {
+          "type": "string",
+          "description": "Centro de custo associado ao item"
+        },
+        "descricaoSolicitacaoCompra": {
+          "type": "string",
+          "description": "Descrição da solicitação de compra"
+        },
+        "descricaoDetalhadaProduto": {
+          "type": "string",
+          "description": "Descrição detalhada do produto"
+        },
+        "codigoCompradorItemRc": {
+          "type": "string",
+          "description": "Código do comprador vinculado ao item da requisição"
+        }
+      }
+    },
+    "inline_response_200_2_result": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": "Identificador único do pedido"
+        },
+        "dataIntegracao": {
+          "type": "string",
+          "description": "Data em que o pedido foi integrado ao sistema"
+        },
+        "tipoPedido": {
+          "type": "string",
+          "description": "Tipo do pedido realizado"
+        },
+        "codigoGrupoComprador": {
+          "type": "string",
+          "description": "Código do grupo comprador"
+        },
+        "codigoOrganizacaoCompras": {
+          "type": "string",
+          "description": "Código da organização de compras"
+        },
+        "codigoCondicaoPagamento": {
+          "type": "string",
+          "description": "Código da condição de pagamento utilizada"
+        },
+        "incoterms": {
+          "type": "string",
+          "description": "Incoterms aplicável ao pedido"
+        },
+        "textoCabecalho": {
+          "type": "string",
+          "description": "Texto descritivo do cabeçalho do pedido"
+        },
+        "idFornecedorIntegracao": {
+          "type": "string",
+          "description": "Identificador do fornecedor no sistema de integração"
+        },
+        "cnpjFornecedor": {
+          "type": "string",
+          "description": "CNPJ do fornecedor"
+        },
+        "cnpjComprador": {
+          "type": "string",
+          "description": "CNPJ do comprador"
+        },
+        "nomeUsuarioComprador": {
+          "type": "string",
+          "description": "Nome do usuário responsável pela comprador"
+        },
+        "itens": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/inline_response_200_2_itens"
+          }
+        }
+      }
+    },
+    "inline_response_200_2": {
+      "type": "object",
+      "properties": {
+        "result": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/inline_response_200_2_result"
+          }
+        }
+      },
+      "x-examples": {
+        "Example 1": {
+          "result": [
+            {
+              "id": 38,
+              "dataPedidoDisponivel": "2026-01-20T14:12:12",
+              "dataIntegracao": "2026-01-20T14:12:12",
+              "tipoPedido": "123",
+              "codigoGrupoComprador": "GRP",
+              "codigoOrganizacaoCompras": "ORG",
+              "codigoCondicaoPagamento": "45DDL",
+              "incoterms": "Cif",
+              "textoCabecalho": "Pedido Plataforma Smarkets",
+              "idFornecedorIntegracao": "3333",
+              "cnpjFornecedor": "65.112.314/0001-21",
+              "cnpjComprador": "21.003.099/0001-55",
+              "nomeUsuarioComprador": "Rafael Gino",
+              "itens": [
+                {
+                  "id": 97,
+                  "codigo": "",
+                  "codigoProduto": "SUPSAP",
+                  "nomeProduto": "Suporte SAP",
+                  "quantidade": 1,
+                  "dataRemessa": "2019-12-01T00:00:00",
+                  "precoBruto": 123,
+                  "precoLiquido": 123,
+                  "precoUnidade": 123,
+                  "codigoCategoria": "SUP",
+                  "codigoNcm": "90189099",
+                  "codigoRc": "T10",
+                  "codigoIva": "IVA",
+                  "codigoUnidadeMedida": "316",
+                  "idProdutoIntegracao": "SUPSAP",
+                  "centroCustoIntegracao": "5678",
+                  "descricaoSolicitacaoCompra": "TESTE",
+                  "descricaoDetalhadaProduto": "",
+                  "codigoCompradorItemRc": "MEC"
+                }
+              ]
+            },
+            {
+              "id": 219,
+              "dataPedidoDisponivel": "2026-01-20T14:12:12",
+              "dataIntegracao": "2026-01-20T14:12:12",
+              "tipoPedido": "123",
+              "codigoGrupoComprador": "GRP",
+              "codigoOrganizacaoCompras": "ORG",
+              "codigoCondicaoPagamento": "45DDL",
+              "incoterms": "Cif",
+              "textoCabecalho": "Pedido Plataforma Smarkets",
+              "idFornecedorIntegracao": "",
+              "cnpjFornecedor": "08.156.392/0001-94",
+              "cnpjComprador": "21.003.099/0001-55",
+              "nomeUsuarioComprador": "Henrique Soares de Santana",
+              "itens": [
+                {
+                  "id": 875,
+                  "codigo": "",
+                  "codigoProduto": "TLK120",
+                  "nomeProduto": "Teclado Logitech K120, ABNT2",
+                  "quantidade": 1,
+                  "dataRemessa": "2020-01-30T00:00:00",
+                  "precoBruto": 25,
+                  "precoLiquido": 25,
+                  "precoUnidade": 25,
+                  "codigoCategoria": "PER",
+                  "codigoNcm": "8467.91.00",
+                  "codigoIva": "IVA",
+                  "codigoUnidadeMedida": "316",
+                  "idProdutoIntegracao": "TLK120",
+                  "centroCustoIntegracao": "5678",
+                  "descricaoSolicitacaoCompra": "",
+                  "descricaoDetalhadaProduto": "Teclado Logitech K120, ABNT2"
+                }
+              ]
+            },
+            {
+              "id": 219,
+              "dataPedidoDisponivel": "2026-01-20T14:12:12",
+              "dataIntegracao": "2026-01-20T14:12:12",
+              "tipoPedido": "123",
+              "codigoGrupoComprador": "GRP",
+              "codigoOrganizacaoCompras": "ORG",
+              "codigoCondicaoPagamento": "45DDL",
+              "incoterms": "Cif",
+              "textoCabecalho": "Pedido Plataforma Smarkets",
+              "idFornecedorIntegracao": "",
+              "cnpjFornecedor": "08.156.392/0001-94",
+              "cnpjComprador": "21.003.099/0001-55",
+              "nomeUsuarioComprador": "Henrique Soares de Santana",
+              "itens": [
+                {
+                  "id": 875,
+                  "codigo": "",
+                  "codigoProduto": "TLK120",
+                  "nomeProduto": "Teclado Logitech K120, ABNT2",
+                  "quantidade": 1,
+                  "dataRemessa": "2020-01-30T00:00:00",
+                  "precoBruto": 25,
+                  "precoLiquido": 25,
+                  "precoUnidade": 25,
+                  "codigoCategoria": "PER",
+                  "codigoNcm": "8467.91.00",
+                  "codigoIva": "IVA",
+                  "codigoUnidadeMedida": "316",
+                  "idProdutoIntegracao": "TLK120",
+                  "centroCustoIntegracao": "5678",
+                  "descricaoSolicitacaoCompra": "",
+                  "descricaoDetalhadaProduto": "Teclado Logitech K120, ABNT2"
+                }
+              ]
+            }
+          ]
+        }
+      }
+    },
+    "body_1": {
+      "type": "object",
+      "required": [
+        "IdIntegracaoPedidoERP"
+      ],
+      "properties": {
+        "IdIntegracaoPedidoERP": {
+          "type": "string",
+          "x-stoplight": {
+            "id": "k944z9gkewgp4"
+          }
+        }
+      },
+      "x-examples": {
+        "Exemplo de request": 4300000063
+      }
+    },
+    "inline_response_200_3": {
+      "type": "object",
+      "properties": {
+        "IdIntegracaoPedidoERP": {
+          "type": "string"
+        },
+        "mensagem": {
+          "type": "string"
+        },
+        "statusCode": {
+          "type": "string"
+        }
+      },
+      "x-examples": {
+        "Example 1": {
+          "IdIntegracaoPedidoERP": "4300000063",
+          "mensagem": "\"Sucesso\"",
+          "statusCode": "200"
+        }
+      }
+    }
+  }
+}
